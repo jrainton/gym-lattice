@@ -32,6 +32,8 @@ model = DQN.load("dqn_lattice", env=env)
 #       wrap environment in a "Monitor" wrapper before other wrappers.
 mean_reward, std_reward = evaluate_policy(model, model.get_env(), n_eval_episodes=10)
 
+print(mean_reward, std_reward)
+
 # Enjoy trained agent
 obs = env.reset()
 while not env.done:

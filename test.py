@@ -35,10 +35,11 @@ print(mean_reward, std_reward)
 
 # Enjoy trained agent
 obs = env.reset()
-while not env.done:
-    action, _states = model.predict(obs, deterministic=True)
-    obs, rewards, dones, info = env.step(action)
-    env.render()
-    if dones:
-        print("Episode finished! Reward: {} | Collisions: {} | Actions: {}".format(rewards, info['collisions'], info['actions']))
-        break
+for i in range(5):
+	while not env.done:
+	    action, _states = model.predict(obs, deterministic=True)
+	    obs, rewards, dones, info = env.step(action)
+	    env.render()
+	    if dones:
+	        print("Episode finished! Reward: {} | Collisions: {} | Actions: {}".format(rewards, info['collisions'], info['actions']))
+	        break

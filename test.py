@@ -8,7 +8,8 @@ from stable_baselines3.common.evaluation import evaluate_policy
 
 np.random.seed(42)
 
-seq = 'HHHPHPPHH' # Our input sequence
+seq = 'hhppppphhppphppphp' # Our input sequence
+seq = seq.upper()
 env = Lattice2DEnv(seq)
 
 # Instantiate the agent

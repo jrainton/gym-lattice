@@ -9,13 +9,12 @@ from stable_baselines3.common.evaluation import evaluate_policy
 np.random.seed(42)
 
 seq = 'HHHPHPPHH' # Our input sequence
-action_space = spaces.Discrete(4) # Choose among [0, 1, 2 ,3]
 env = Lattice2DEnv(seq)
 
 # Instantiate the agent
 model = DQN('MlpPolicy', env, verbose=1)
 # Train the agent
-model.learn(total_timesteps=int(2e5))
+model.learn(total_timesteps=10000, log_interval=4)
 # Save the agent
 # model.save("dqn_lattice")
 # del model  # delete trained model to demonstrate loading

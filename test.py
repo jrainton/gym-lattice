@@ -14,7 +14,7 @@ env = Lattice2DEnv(seq)
 # Instantiate the agent
 model = DQN('MlpPolicy', env, verbose=1)
 # Train the agent
-model.learn(total_timesteps=10000, log_interval=4)
+model.learn(total_timesteps=int(2e8))
 # Save the agent
 # model.save("dqn_lattice")
 # del model  # delete trained model to demonstrate loading

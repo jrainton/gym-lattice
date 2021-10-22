@@ -17,14 +17,14 @@ model = DQN('MlpPolicy', env, verbose=1)
 # Train the agent
 model.learn(total_timesteps=int(2e5))
 # Save the agent
-model.save("dqn_lattice")
-del model  # delete trained model to demonstrate loading
+# model.save("dqn_lattice")
+# del model  # delete trained model to demonstrate loading
 
-# Load the trained agent
-# NOTE: if you have loading issue, you can pass `print_system_info=True`
-# to compare the system on which the model was trained vs the current one
-# model = DQN.load("dqn_lunar", env=env, print_system_info=True)
-model = DQN.load("dqn_lattice", env=env)
+# # Load the trained agent
+# # NOTE: if you have loading issue, you can pass `print_system_info=True`
+# # to compare the system on which the model was trained vs the current one
+# # model = DQN.load("dqn_lunar", env=env, print_system_info=True)
+# model = DQN.load("dqn_lattice", env=env)
 
 # Evaluate the agent
 # NOTE: If you use wrappers with your environment that modify rewards,

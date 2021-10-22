@@ -33,7 +33,7 @@ model = DQN.load("dqn_lattice", env=env)
 mean_reward, std_reward = evaluate_policy(model, model.get_env(), n_eval_episodes=10)
 
 # Enjoy trained agent
-obs = env.reset()
+env.reset()
 while not env.done():
     action, _states = model.predict(obs, deterministic=True)
     obs, rewards, dones, info = env.step(action)

@@ -34,8 +34,8 @@ mean_reward, std_reward = evaluate_policy(model, model.get_env(), n_eval_episode
 print(mean_reward, std_reward)
 
 # Enjoy trained agent
-obs = env.reset()
 for i in range(5):
+	obs = env.reset()
 	while not env.done:
 	    action, _states = model.predict(obs, deterministic=True)
 	    obs, rewards, dones, info = env.step(action)

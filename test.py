@@ -8,7 +8,7 @@ from stable_baselines3.common.evaluation import evaluate_policy
 
 np.random.seed(42)
 
-seq = 'HHPHH' # Our input sequence
+seq = 'HHHPHPPHH' # Our input sequence
 action_space = spaces.Discrete(4) # Choose among [0, 1, 2 ,3]
 env = Lattice2DEnv(seq)
 
@@ -39,5 +39,5 @@ while not env.done:
     obs, rewards, dones, info = env.step(action)
     env.render()
     if dones:
-        print("Episode finished! Reward: {} | Collisions: {} | Actions: {}".format(reward, info['collisions'], info['actions']))
+        print("Episode finished! Reward: {} | Collisions: {} | Actions: {}".format(rewards, info['collisions'], info['actions']))
         break

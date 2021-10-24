@@ -2,7 +2,7 @@ from gym_lattice.envs import Lattice2DEnv
 from gym import spaces
 import numpy as np
 
-from stable_baselines3 import DQN
+from stable_baselines3 import PPO
 from stable_baselines3.common.evaluation import evaluate_policy
 
 
@@ -13,7 +13,7 @@ seq = seq.upper()
 env = Lattice2DEnv(seq)
 
 # Instantiate the agent
-model = DQN('MlpPolicy', env, verbose=1)
+model = PPO('MlpPolicy', env, verbose=1)
 # Train the agent
 model.learn(total_timesteps=int(2e5))
 # Save the agent

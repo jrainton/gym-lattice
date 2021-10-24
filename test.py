@@ -8,7 +8,7 @@ from stable_baselines3.common.evaluation import evaluate_policy
 
 np.random.seed(42)
 
-seq = 'HHHH' # Our input sequence
+seq = 'HHPPHH' # Our input sequence
 seq = seq.upper()
 env = Lattice2DEnv(seq)
 

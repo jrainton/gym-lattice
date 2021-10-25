@@ -14,7 +14,7 @@ seq = seq.upper()
 env = Lattice2DEnv(seq)
 
 # Instantiate the agent
-model = DQN('MlpPolicy', env, verbose=1, exploration_fraction=0.6, exploration_final_eps=0.1)
+model = DQN('MlpPolicy', env, verbose=1, exploration_final_eps=0.1)
 # Train the agent
 
 start = time.time()

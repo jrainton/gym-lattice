@@ -1,6 +1,7 @@
 from gym_lattice.envs import Lattice2DEnv
 from gym import spaces
 import numpy as np
+import time
 
 from stable_baselines3 import DQN
 from stable_baselines3.common.evaluation import evaluate_policy
@@ -15,7 +16,10 @@ env = Lattice2DEnv(seq)
 # Instantiate the agent
 model = DQN('MlpPolicy', env, verbose=1, exploration_fraction=0.6, exploration_final_eps=0.1)
 # Train the agent
-model.learn(total_timesteps=int(2e5))
+
+start = time.time()
+model.learn(total_timesteps=int(2e8))
+end = time.time()
 # Save the agent
 # model.save("dqn_lattice")
 # del model  # delete trained model to demonstrate loading
@@ -43,3 +47,6 @@ while not env.done:
     if dones:
         print("Episode finished! Reward: {} | Collisions: {} | Actions: {}".format(rewards, info['collisions'], info['actions']))
         break
+
+
+print(f"Total time to train is {end-start}")

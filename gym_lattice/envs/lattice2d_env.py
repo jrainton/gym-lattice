@@ -199,7 +199,6 @@ class Lattice2DEnv(gym.Env):
         # Detects for collision or traps in the given coordinate
         idx = len(self.state)
         print(self.grid_length)
-        print(next_move)
         if next_move in self.state:
             self.collisions += 1
             collision = True
@@ -217,6 +216,7 @@ class Lattice2DEnv(gym.Env):
                 is_trapped = True
 
         # Set-up return values
+        print(self.state)
         grid = self._draw_grid(self.state)
         self.done = True if (len(self.state) == len(self.seq) or is_trapped) else False
         reward = self._compute_reward(is_trapped, collision)

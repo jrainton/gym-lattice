@@ -198,7 +198,7 @@ class Lattice2DEnv(gym.Env):
         next_move = adj_coords[action]
         # Detects for collision or traps in the given coordinate
         idx = len(self.state)
-        print(self.state)
+        print(action)
         if next_move in self.state:
             self.collisions += 1
             collision = True

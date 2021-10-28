@@ -199,10 +199,14 @@ class Lattice2DEnv(gym.Env):
         next_move = adj_coords[action]
         # Detects for collision or traps in the given coordinate
         idx = len(self.state)
-        print(self.grid_length)
+        trans_x, trans_y = tuple(sum(x) for x in zip(self.midpoint, next_move))
         if next_move in self.state:
             self.collisions += 1
             collision = True
+        elif trans_x >= self.grid_length or trans_x < 0 or trans_y < 0 or trans_y >= self.grid_length:
+            logger.warn('Your agent was out of bounds! Ending the episode.')
+            self.trapped += 1
+            is_trapped = True
         else:
             self.actions.append(action)
             try:
@@ -217,7 +221,6 @@ class Lattice2DEnv(gym.Env):
                 is_trapped = True
 
         # Set-up return values
-        print(self.state)
         grid = self._draw_grid(self.state)
         self.done = True if (len(self.state) == len(self.seq) or is_trapped) else False
         reward = self._compute_reward(is_trapped, collision)

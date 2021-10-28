@@ -120,7 +120,7 @@ class Lattice2DEnv(gym.Env):
             self.grid_length = len(seq) + 5
         else:
             self.grid_length = len(seq) + 4
-        self.midpoint = (len(self.seq), len(self.seq))
+        self.midpoint = ((self.grid_length - 1) / 2,(self.grid_length - 1) / 2)
 
         # Define action-observation spaces
         self.action_space = spaces.Discrete(4)
@@ -198,7 +198,6 @@ class Lattice2DEnv(gym.Env):
         next_move = adj_coords[action]
         # Detects for collision or traps in the given coordinate
         idx = len(self.state)
-        print(self.grid_length)
         if next_move in self.state:
             self.collisions += 1
             collision = True
@@ -216,7 +215,7 @@ class Lattice2DEnv(gym.Env):
                 is_trapped = True
 
         # Set-up return values
-        print(self.state)
+        #print(self.state)
         grid = self._draw_grid(self.state)
         self.done = True if (len(self.state) == len(self.seq) or is_trapped) else False
         reward = self._compute_reward(is_trapped, collision)

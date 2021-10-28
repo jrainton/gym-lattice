@@ -115,7 +115,11 @@ class Lattice2DEnv(gym.Env):
             raise
 
         # Grid attributes
-        self.grid_length = len(seq) + 4
+        
+        if len(seq) % 2 == 0:
+            self.grid_length = len(seq) + 5
+        else:
+            self.grid_length = len(seq) + 4
         self.midpoint = (len(self.seq), len(self.seq))
 
         # Define action-observation spaces

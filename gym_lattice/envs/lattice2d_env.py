@@ -119,7 +119,7 @@ class Lattice2DEnv(gym.Env):
         if len(seq) % 2 == 0:
             self.grid_length = len(seq) + 3
         else:
-            self.grid_length = len(seq) + 2
+            self.grid_length = len(seq) + 
         self.midpoint = (int((self.grid_length - 1) / 2), int((self.grid_length - 1) / 2))
 
         # Define action-observation spaces
@@ -209,6 +209,7 @@ class Lattice2DEnv(gym.Env):
         else:
             self.actions.append(action)
             try:
+                self.previous_state = self.state.copy()
                 self.state.update({next_move : self.seq[idx]})
             except IndexError:
                 logger.error('All molecules have been placed! Nothing can be added to the protein chain.')
@@ -378,6 +379,9 @@ class Lattice2DEnv(gym.Env):
         int
             Reward function
         """
+
+        print(self.previous_state)
+        print(self.state)
         state_reward = self._compute_free_energy(self.state) if self.done else 0
         collision_penalty = self.collision_penalty if collision else 0
         actual_trap_penalty = -floor(len(self.seq) * self.trap_penalty) if is_trapped else 0

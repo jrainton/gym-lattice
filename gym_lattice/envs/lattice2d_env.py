@@ -121,7 +121,6 @@ class Lattice2DEnv(gym.Env):
         else:
             self.grid_length = len(seq) + 4
         self.midpoint = (int((self.grid_length - 1) / 2), int((self.grid_length - 1) / 2))
-        print(self.midpoint)
 
         # Define action-observation spaces
         self.action_space = spaces.Discrete(4)

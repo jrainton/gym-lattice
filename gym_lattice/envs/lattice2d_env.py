@@ -383,7 +383,8 @@ class Lattice2DEnv(gym.Env):
         previous_gibbs = self._compute_free_energy(self.previous_state)
         current_gibbs = self._compute_free_energy(self.state)
         state_reward = current_gibbs - previous_gibbs 
-        print(state_reward)
+        if state_reward < 0:
+            state_reward = 0
         #state_reward = self._compute_free_energy(self.state) if self.done else 0
         collision_penalty = self.collision_penalty if collision else 0
         actual_trap_penalty = -floor(len(self.seq) * self.trap_penalty) if is_trapped else 0

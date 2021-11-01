@@ -204,8 +204,8 @@ class Lattice2DEnv(gym.Env):
             collision = True
         elif trans_x >= self.grid_length or trans_x < 0 or trans_y < 0 or trans_y >= self.grid_length:
             logger.warn('Your agent was out of bounds! Ending the episode.')
-            self.trapped += 1
-            is_trapped = True
+            self.collisions += 1
+            collision = True
         else:
             self.actions.append(action)
             try:
@@ -380,12 +380,12 @@ class Lattice2DEnv(gym.Env):
             Reward function
         """
 
-        previous_gibbs = self._compute_free_energy(self.previous_state)
-        current_gibbs = self._compute_free_energy(self.state)
-        state_reward = current_gibbs - previous_gibbs 
-        if state_reward < 0:
-            state_reward = 0
-        #state_reward = self._compute_free_energy(self.state) if self.done else 0
+        # previous_gibbs = self._compute_free_energy(self.previous_state)
+        # current_gibbs = self._compute_free_energy(self.state)
+        # state_reward = current_gibbs - previous_gibbs 
+        # if state_reward < 0:
+        #     state_reward = 0
+        state_reward = self._compute_free_energy(self.state) if self.done else 0
         collision_penalty = self.collision_penalty if collision else 0
         actual_trap_penalty = -floor(len(self.seq) * self.trap_penalty) if is_trapped else 0
 

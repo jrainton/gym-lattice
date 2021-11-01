@@ -18,7 +18,7 @@ model = DQN('MlpPolicy', env, verbose=1, exploration_fraction=0.2, exploration_f
 # Train the agent
 
 start = time.time()
-model.learn(total_timesteps=int(2e7))
+model.learn(total_timesteps=int(2e6))
 end = time.time()
 # Save the agent
 # model.save("dqn_lattice")

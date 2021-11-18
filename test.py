@@ -10,7 +10,7 @@ from stable_baselines3.common.evaluation import evaluate_policy
 
 np.random.seed(42)
 
-seq = 'HHHH' # Our input sequence
+seq = 'HHPPHH' # Our input sequence
 seq = seq.upper()
 env = Lattice2DEnv(seq)
 
@@ -19,7 +19,7 @@ model = A2C("MlpPolicy", env, verbose=1)
 # Train the agent
 
 start = time.time()
-model.learn(total_timesteps=int(2e5))
+model.learn(total_timesteps=int(2e6))
 end = time.time()
 # Save the agent
 # model.save("dqn_lattice")

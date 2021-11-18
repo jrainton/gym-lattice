@@ -4,21 +4,22 @@ import numpy as np
 import time
 
 from stable_baselines3 import DQN
+from stable_baselines3 import A2C
 from stable_baselines3.common.evaluation import evaluate_policy
 
 
 np.random.seed(42)
 
-seq = 'HHPPHHPH' # Our input sequence
+seq = 'HHHH' # Our input sequence
 seq = seq.upper()
 env = Lattice2DEnv(seq)
 
 # Instantiate the agent
-model = DQN('MlpPolicy', env, verbose=1, exploration_fraction=0.2, exploration_final_eps=0.1)
+model = A2C("MlpPolicy", env, verbose=1)
 # Train the agent
 
 start = time.time()
-model.learn(total_timesteps=int(2e6))
+model.learn(total_timesteps=int(2e5))
 end = time.time()
 # Save the agent
 # model.save("dqn_lattice")
